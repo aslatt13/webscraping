@@ -3,15 +3,10 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup
 from urllib.request import urlopen, Request
 
-
-webpage = 'https://ebible.org/asv/JHN'
+webpage = 'https://biblehub.com/asv/john/'
 
 randomch = random.randint(1,21)
-
-if randomch < 10:
-    randomch = '0' + str(randomch)
-else:
-    randomch = str(randomch)
+randomch = str(randomch)
 
 end = randomch + '.htm'
 link = webpage + end
@@ -23,10 +18,9 @@ headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML
 req = Request(link, headers=headers)
 webpage = urlopen(req).read()
 soup = BeautifulSoup(webpage, 'html.parser')
+verses = soup.findAll('p', class_='reg')
 
-verses = soup.findAll('div', class_='main')
-
-#print(verses)
+print(verses)
 
 for verse in verses:
     vlist = verse.text.split('.')
@@ -34,22 +28,18 @@ for verse in verses:
 
 myverse = random.choice(vlist[:-5])
 
-#print(f'Chapter : {randomch}, Verse: {myverse}')
+print(f'Chapter : {randomch}, Verse: {myverse}')
 
 message = 'Chapter: ' + randomch + ' Verse:' + myverse
 
 print(message)
 
 import keys2
-
 from twilio.rest import Client
 
 client = Client(keys2.accountSID,keys2.authToken)
-
 TNum = '+14847465299'
-
 myCell = '+19137447034'
 
 txtmsg = client.messages.create(to=myCell,from_=TNum,body=message)
-
 print(txtmsg.status)
