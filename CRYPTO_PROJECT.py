@@ -50,16 +50,14 @@ for i in row[1:6]:
     print(f'Name: {name} ')
     print(f'Symbol: {symbol} ')
     print(f'Price: {price}')
-    print(f'24hr % Change: {change}')
+    print(f'% Change 24hr: {change}')
     print()
 
     if symbol == 'BTC' and float(price.replace('$', '').replace(',', '')) < 40000:
         message = client.messages.create(to= myCell, from_= TNum, body= 'BTC is below $40,000. Curent price:' + price)
-        print(message.status)
 
     if symbol == 'ETH' and float(price.replace('$', '').replace(',', '')) < 3000:
         message = client.messages.create(to= myCell, from_= TNum, body= 'ETH is below $3,000. Current price:' + price)
-        print(message.status)
 
 
 
