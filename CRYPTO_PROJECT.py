@@ -55,11 +55,11 @@ for i in row[1:6]:
 
     if symbol == 'BTC':
         if float(price.replace('$', '').replace(',', '')) < 40000:
-            message = client.messages.create(to= myCell, from_= TNum, body= 'BTC is below $40,000. \nCurent price:' + price)
+            message = client.messages.create(to= myCell, from_= TNum, body= 'BTC is below $40,000. \nCurent price: ' + price)
 
     if symbol == 'ETH':
         if float(price.replace('$', '').replace(',', '')) < 3000:
-            message = client.messages.create(to= myCell, from_= TNum, body= 'ETH is below $3,000. \nCurrent price:' + price)
+            message = client.messages.create(to= myCell, from_= TNum, body= 'ETH is below $3,000. \nCurrent price: ' + price)
 
 
 
